@@ -68,7 +68,7 @@ def live_speech_to_text():
             audio_content += data
             
             # 음성 데이터를 일정 크기만큼 수집 후 처리
-            if len(audio_content) > RATE * 10:  # 약 2초간 데이터 수집 후 변환 시도
+            if len(audio_content) > RATE * 10:  # 약 10초간 데이터 수집 후 변환 시도
                 audio = speech.RecognitionAudio(content=audio_content)
                 config = speech.RecognitionConfig(
                     encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
@@ -98,11 +98,19 @@ def live_speech_to_text():
         stream.close()
         p.terminate()
 
+#앱에서 해당 엔드포인트를 호출하면 녹음이 시작된다.
+@app.route('/start_live_speech', methods=['GET'])
+def start_live_speech():
+    # 실시간 음성 입력 처리 시작
+    live_speech_to_text()
+    return jsonify({"message": "Live speech recognition started"}), 200
+
+
 if __name__ == '__main__':
     live_speech_to_text()
 
 
-"""
+"""해당 코드는 오디오 파일을 서버에 직접 업로드 할 때 사용
 # 오디오 데이터 처리 라우트 (서버 측)
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
