@@ -13,8 +13,10 @@
         android:text="Connect"
         android:textAlignment="center"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="50dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:id="@+id/text_bridge"
@@ -23,29 +25,35 @@
         android:text="Bridge"
         android:textAlignment="center"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="102dp" />
+        app:layout_constraintTop_toBottomOf="@id/text_connect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp" />
 
     <ImageView
         android:id="@+id/Vision_Start"
         android:layout_width="205dp"
-        android:layout_height="730dp"
+        android:layout_height="0dp"
         android:layout_marginStart="4dp"
-        android:src="@drawable/start_image"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_launcher_background"
         android:scaleType="centerInside"
         android:contentDescription="시작 이미지"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintTop_toBottomOf="@id/text_bridge"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/Mobility_start"
         android:layout_width="205dp"
-        android:layout_height="730dp"
-        android:src="@drawable/delay_image"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_launcher_background"
         android:scaleType="centerInside"
         android:contentDescription="지체 이미지"
-        app:layout_constraintStart_toEndOf="@id/image_start"
-        tools:layout_editor_absoluteX="209dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintTop_toTopOf="@id/Vision_Start"
+        app:layout_constraintBottom_toBottomOf="@id/Vision_Start"
+        app:layout_constraintStart_toEndOf="@id/Vision_Start"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.speech.tts.TextToSpeech;
 
+import org.w3c.dom.Text;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
             public void onInit(int status) {              // TTS가 초기화 완료 시 호출됨
                 if (status == TextToSpeech.SUCCESS) {     // TTS가 성공적으로 초기화 되었을 시
                     tts.setLanguage(Locale.KOREAN);        // 알맞은 언어 설정
-                    tts.setSpeechRate(0.5f);              // 기본속도 1.0 느리게 0.5
-                    tts.speak(text1 + text2, TextToSpeech.QUEUE_FLUSH, null, null);   // TextToSpeech.QUEUE_FLUSH 이전 음성 출력을 지우고 새 텍스트를 읽는 옵션
+                    tts.setSpeechRate(1.0f);              // 기본속도 1.0 느리게 0.5
+                    tts.speak(text1, TextToSpeech.QUEUE_FLUSH, null, "TEXT1");   // TextToSpeech.QUEUE_FLUSH 이전 음성 출력을 지우고 새 텍스트를 읽는 옵션
+
+                    tts.playSilentUtterance(200, TextToSpeech.QUEUE_ADD, null);
+                    tts.speak(text2, TextToSpeech.QUEUE_ADD, null, "TEXT2");
                 }
             }
         });
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("Disability_Type", Disability_Type);
                     startActivity(intent);
                     finish();
+                    return true;
                 }
                 return false;
             }

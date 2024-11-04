@@ -33,6 +33,6 @@ public class VisionDisabilityActivity extends AppCompatActivity {
             public void onInit(int i) {
 
             }
-        })
+        });
     }
 }
