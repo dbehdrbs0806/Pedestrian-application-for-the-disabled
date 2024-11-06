@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextToSpeech tts;                                     // tts 사용을 위한 tts 객체
 
-    private int Disability_Type;                                  // 다음 activity로 넘기기 위한 Type;
+    public static int Disability_Type;                                  // 다음 activity로 넘기기 위한 Type;
 
     private static final String text1 = "장애인을 위한 길안내 서비스 Connect_Bridge입니다.";
     private static final String text2 = "시각장애인은 앱 화면의 왼쪽을 터치하시고 지체 장애인은 앱의 오른쪽을 터치하십시오";
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onInit(int status) {              // TTS가 초기화 완료 시 호출됨
                 if (status == TextToSpeech.SUCCESS) {     // TTS가 성공적으로 초기화 되었을 시
-                    tts.setLanguage(Locale.KOREAN);        // 알맞은 언어 설정
+                    tts.setLanguage(Locale.KOREAN);       // 알맞은 언어 설정
                     tts.setSpeechRate(1.0f);              // 기본속도 1.0 느리게 0.5
                     tts.speak(text1, TextToSpeech.QUEUE_FLUSH, null, "TEXT1");   // TextToSpeech.QUEUE_FLUSH 이전 음성 출력을 지우고 새 텍스트를 읽는 옵션
 

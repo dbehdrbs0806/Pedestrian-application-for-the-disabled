@@ -3,52 +3,91 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E8F5E9"
+    android:padding="20dp">
 
-    <EditText
-        android:id="@+id/Vision_Starting_Location"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="120dp" />
+    <!-- 터치 이벤트를 위한 전체 레이아웃 -->
 
-    <EditText
-        android:id="@+id/Vision_Departure_Location"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="230dp" />
+    <!-- 출발 장소 텍스트 -->
+    <View
+        android:id="@+id/touchable_area"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <!-- 출발 장소 입력 필드 -->
+
+    <!-- 도착 장소 텍스트 -->
+
+    <!-- 도착 장소 입력 필드 -->
+
+    <!-- 네비게이션 시작 버튼 -->
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:text="출발장소"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
         android:gravity="center"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="120dp" />
+        android:text="출발장소"
+        android:textColor="#2E7D32"
+        android:textSize="35sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="118dp" />
+
+    <EditText
+        android:id="@+id/Vision_Starting_Location"
+        android:layout_width="500dp"
+        android:layout_height="150dp"
+        android:backgroundTint="#A5D6A7"
+        android:hint="출발 장소 입력"
+        android:inputType="text"
+        android:textColor="#333333"
+        android:textSize="35sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="220dp"
+        tools:layout_editor_absoluteY="119dp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:text="도착장소"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
         android:gravity="center"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="230dp" />
+        android:text="도착장소"
+        android:textColor="#2E7D32"
+        android:textSize="35sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="290dp" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="559dp" />
+    <EditText
+        android:id="@+id/Vision_Departure_Location"
+        android:layout_width="500dp"
+        android:layout_height="150dp"
+        android:backgroundTint="#A5D6A7"
+        android:hint="도착 장소 입력"
+        android:inputType="text"
+        android:textColor="#333333"
+        android:textSize="35sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="223dp"
+        tools:layout_editor_absoluteY="288dp" />
 
+    <Button
+        android:id="@+id/start_navigation_button1"
+        android:layout_width="600dp"
+        android:layout_height="150dp"
+        android:backgroundTint="#388E3C"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_launcher_background"
+        android:text="길안내 시작"
+        android:textSize="35dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="729dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

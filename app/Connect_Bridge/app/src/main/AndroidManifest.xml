@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>    <!-- 사용자의 정확한 위치 얻기 권환 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>  <!-- 대략적인 위치정보 가져오는 권환 FINE_LOCATION 사용시 필요 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>            <!-- 음성인식 및 마이크 입력 권환 -->
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>    <!-- 사용자의 정확한 위치 얻기 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>  <!-- 대략적인 위치정보 가져오는 권한 FINE_LOCATION 사용시 필요 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>            <!-- 음성인식 및 마이크 입력 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" />               <!-- 인터넷 사용을 위한 권한 -->
 
     <application
         android:allowBackup="true"
@@ -33,6 +33,25 @@
             android:name=".AuthorityActivity"
             android:exported="true">
         </activity>
+
+        <!-- VisionDisabilityActivity -->
+        <activity
+            android:name=".VisionDisabilityActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- MobilityDisabilityActivity -->
+        <activity
+            android:name=".MobilityDisabilityActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- LoadingActivity -->
+        <activity
+            android:name=".LoadingActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>
