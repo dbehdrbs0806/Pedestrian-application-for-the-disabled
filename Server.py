@@ -110,7 +110,7 @@ if __name__ == '__main__':
     live_speech_to_text()
 
 
-"""해당 코드는 오디오 파일을 서버에 직접 업로드 할 때 사용
+"""해당 코드는 오디오 파일을 서버에 직접 업로드 할 때 사용 그럼 이거 쓰면 되요
 # 오디오 데이터 처리 라우트 (서버 측)
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
@@ -157,3 +157,8 @@ def upload_audio_file():
     else:
         print("Error:", response.json())
 """
+
+#입력받은 데이터를 DB로 전달 앱(json파일) -> 서버(받은 데이터를 쪼개기 그걸 이제 db로 보낸다 그럼 출발지 목적지를 보내면 -> db에서 그걸로 경로를 서버에 보내겠죠? 그걸 앱으로 다시 보내면 끝 ez 오늘 그럼 db쪼개는거 다 작성할께요 
+# 형
+# 장난 아니에요 한번 해볼래요? 이거 절대 못깨 ) ->  
+#
