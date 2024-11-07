@@ -4,12 +4,10 @@ package com.example.connect_bridge;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.work.Data;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,22 +20,22 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InterruptedIOException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class ProgressWorker extends Worker {
-    private static RequestQueue requestQueue;
-    private String startingLocation;
-    private String destinationLocation;
-    private Location location;
+    private static RequestQueue requestQueue;                             // volley 사용을 위한 rest api 요청을 담고 뱉을 요청 큐
+    private String startingLocation;                                      // 서버로 보내기 위한 출발 장소
+    private String destinationLocation;                                   // 서버로 보내기 위한 도착 장소
+    private Location location;                                            // json 형태로 보내기위한 Gson 으로 보낼 객체파일
 
-    private String jsonfile;
+    private String jsonfile;                                              // 보낼 json 파일
 
-    static final String url = "http://"
+    static final String url = "http://127.0.0.1:5000";                                   // url 내용
 
     public ProgressWorker(@NonNull Context context, @NonNull WorkerParameters params) {
         super(context, params);
-        if (requestQueue == null) {
+        if (requestQueue == null) {                                        // requestQueue 사용을 위해 Queue를 초기화
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
     }
@@ -48,9 +46,9 @@ public class ProgressWorker extends Worker {
         try {                                                                           // try-catch를 통해 base64를 통해 이미지 인코딩
             setProgressAsync(new Data.Builder().putInt("PROGRESS", 10).build());        // 인코딩 10%로 progress 업데이트
 
-            startingLocation = getInputData().getString("Starting_Location_Text");
+            startingLocation = getInputData().getString("Starting_Location_Text");  // activity에서 넘어온 데이터로 출발장소, 도착장소를 받음
             destinationLocation = getInputData().getString("Destination_Location_Text");
-            Thread.sleep(1000);
+            Thread.sleep(1000);                                                    // 1초 대기
 
             if (MainActivity.Disability_Type == 0) {                                    // 시각장애
                 location = new Location(startingLocation, destinationLocation, 0);
@@ -63,18 +61,21 @@ public class ProgressWorker extends Worker {
             setProgressAsync(new Data.Builder().putInt("PROGRESS", 30).build());        // 인코딩 30%로 progress 업데이트
 
 
-            handleResult();                                                             // handleResult() 로 서버로부터 응답 받음
-            setProgressAsync(new Data.Builder().putInt("PROGRESS", 50).build());        // 인코딩 50%로 progress 업데이트
+            // doWork 메소드의 종료를 막기위해 CounterDownLatch 사용
+            // CountDownLatch latch = new CountDownLatch(1);
 
+            handleResult();                                                        // handleResult() 로 서버로부터 응답 받음
+            // setProgressAsync(new Data.Builder().putInt("PROGRESS", 50).build());        // 인코딩 50%로 progress 업데이트
 
-            // 응답 완료 후 진행률 100% 업데이트
-            setProgressAsync(new Data.Builder().putInt("PROGRESS", 100).build());
+          /*  if (!latch.await(15, TimeUnit.SECONDS)) {  // 응답이 10초 이내에 오지 않으면 실패
+                return Result.failure();
+            }*/
+
             // 성공 결과 반환
-            Data outputData = new Data.Builder()
-                    // 여기다가 받은 데이터 받아서 다시 Activity로 보냄
-                    .build();
-            return Result.success(outputData);                                          // 비동기 progressworker가 success 되어 받음
-        } catch (IOException | InterruptedException e) {
+            // activity 로 보낼 outputData
+            Data outputData = new Data.Builder().build();                                        // 여기다가 받은 데이터 받아서 다시 Activity로 보냄
+            return Result.success(outputData);                                                   // 비동기 progressworker가 success 되어 받음
+        } catch (InterruptedException e) {
             e.printStackTrace();
             return Result.failure();
         }
@@ -95,7 +96,8 @@ public class ProgressWorker extends Worker {
 
                             // 서버에서 전달된 데이터를 추출
 
-
+                            // 응답 완료 후 진행률 100% 업데이트
+                            setProgressAsync(new Data.Builder().putInt("PROGRESS", 100).build());
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.e("JSONError", "JSON Parsing error: " + e.getMessage());
@@ -123,3 +125,4 @@ public class ProgressWorker extends Worker {
         requestQueue.add(stringRequest);                                             // 요청 큐에 추가하여 비동기 요청 수행
     }
 }
+

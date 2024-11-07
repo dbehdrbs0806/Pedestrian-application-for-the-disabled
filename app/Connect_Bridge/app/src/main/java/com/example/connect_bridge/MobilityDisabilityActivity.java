@@ -31,7 +31,7 @@ public class MobilityDisabilityActivity extends AppCompatActivity {
         Starting_Location_Text = String.valueOf(Mobility_Starting_Location.getText());
         Destination_Location_Text = String.valueOf(Mobility_Departure_Location.getText());
 
-        start_navigation_button2.setOnClickListener(new View.OnClickListener() {
+        /*start_navigation_button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent next_intent = new Intent(MobilityDisabilityActivity.this, LoadingActivity.class);
@@ -41,6 +41,6 @@ public class MobilityDisabilityActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+*/
     }
 }

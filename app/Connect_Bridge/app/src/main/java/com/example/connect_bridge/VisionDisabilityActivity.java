@@ -75,7 +75,7 @@ public class VisionDisabilityActivity extends AppCompatActivity {
             }
         });
 
-        start_navigation_button1.setOnClickListener(new View.OnClickListener() {
+        /*start_navigation_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent next_intent = new Intent(VisionDisabilityActivity.this, LoadingActivity.class);
@@ -84,7 +84,7 @@ public class VisionDisabilityActivity extends AppCompatActivity {
                 startActivity(next_intent);
                 finish();
             }
-        });
+        });*/
     }
 
     // 음성 인식을 위한 SpeechRecognizer 초기화 및 리스너 설정 함수
